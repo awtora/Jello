@@ -1,0 +1,9 @@
+.edit-buttons {
+  display: flex;
+  justify-content: start;
+  padding: 5px 0px 5px 0px;
+
+  &__btn {
+    margin-right: 5px;
+  }
+}

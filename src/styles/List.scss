@@ -1,0 +1,47 @@
+.list {
+  position: relative;
+  display: flex;
+  margin: 10px;
+  padding: 5px;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #dfe3e6;
+  flex-shrink: 0;
+  width: 272px;
+  height: fit-content;
+
+  &-editor {
+    padding: 10px 0 10px 0;
+  }
+
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      cursor: pointer;
+      border-radius: 5px;
+      color: rgba(0, 0, 0, 0.5);
+
+      opacity: 0.9;
+
+      &:hover {
+        background: #747477;
+      }
+    }
+  }
+
+  &-cards {
+    &__addCard {
+      margin-top: 5px;
+    }
+  }
+}

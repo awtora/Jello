@@ -1,0 +1,23 @@
+.card {
+    &__icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        border-radius: 5px;
+        margin: 1px;
+        color: rgba(0, 0, 0, 0.5);
+
+        opacity: 0.9;
+
+        &:hover {
+            background: #dfe3e6;
+        }
+    }
+}

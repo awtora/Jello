@@ -1,0 +1,56 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &-manager {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 5px;
+
+    &__button {
+      margin-right: 10px;
+    }
+
+    &__invites{
+
+      &-form {
+        margin: 5px;
+      }
+    }
+
+    &__permissions {
+      width: 17rem;
+
+      &-form {
+        margin: 5px;
+
+        &-row {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          &__group {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+
+  &-body {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-start;
+
+    &__addList {
+      margin: 10px;
+      padding: 5px;
+    }
+  }
+}
+

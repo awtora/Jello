@@ -1,0 +1,57 @@
+.userboards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &-divider {
+    border-top: 3px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  &-header {
+    color: white;
+    margin: 10px;
+    padding: 5px;
+  }
+
+  &-button {
+    margin: 10px;
+    padding: 5px;
+  }
+
+  &-boardcard {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+    padding: 5px;
+    height: 120px;
+
+    &__icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      border-radius: 5px;
+      margin: 1px;
+      color: rgba(0, 0, 0, 0.5);
+
+      opacity: 0.9;
+
+      &:hover {
+        background: #dfe3e6;
+      }
+    }
+  }
+
+  &-editor {
+    margin: 10px;
+    padding: 5px;
+  }
+}
