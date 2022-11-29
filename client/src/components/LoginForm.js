@@ -4,6 +4,7 @@ import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 import '../styles/LoginForm.scss'
 import {useDispatch} from "react-redux";
 import {postSignIn, postSignUp} from "../store/actions/UserActions";
+import {setAlertWithTimeout} from "../store/actions/AlertActions";
 
 export const LoginForm = () => {
     const [login, setLogin] = useState('');
@@ -14,11 +15,19 @@ export const LoginForm = () => {
     const handlePasswordInput = (event) => setPassword(event.target.value)
 
     const handleSignIn = () => {
-        dispatch(postSignIn({login: login, password: password}))
+        if (login !== '' && password !== '') {
+            dispatch(postSignIn({login: login, password: password}))
+        } else {
+            dispatch(setAlertWithTimeout('Please enter your login and password'));
+        }
     }
 
     const handleSignUp = () => {
-        dispatch(postSignUp({login: login, password: password}))
+        if (login !== '' && password !== '') {
+            dispatch(postSignUp({login: login, password: password}))
+        } else {
+            dispatch(setAlertWithTimeout('Please enter your desired login and password first'));
+        }
     }
 
     return (
