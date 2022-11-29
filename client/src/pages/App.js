@@ -2,7 +2,7 @@ import '../styles/App.scss';
 
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {UserMenu} from "./UserMenu";
+import {UserMenu} from "../components/UserMenu";
 import {BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
 import {LoginForm} from "./LoginForm";
 import {AuthRoute, PrivateRoute} from "../helpers/RouteWrappers";
@@ -11,7 +11,7 @@ import {UserBoards} from "./UserBoards";
 import {getUserBoards} from "../store/actions/BoardActions";
 import {UserEditor} from "./UserEditor";
 import {getInvites} from "../store/actions/InviteActions";
-import {Alert} from "./Alert";
+import {Alert} from "../components/Alert";
 
 export default function App() {
     const dispatch = useDispatch();

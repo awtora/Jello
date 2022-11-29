@@ -1,11 +1,11 @@
 import '../styles/Board.scss';
 
 import React, {useEffect, useState} from 'react';
-import List from './List';
+import List from '../components/List';
 import {closestCorners, DndContext, DragOverlay, MouseSensor, useSensor, useSensors} from '@dnd-kit/core';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button} from 'reactstrap';
-import ListEditor from './ListEditor';
+import ListEditor from '../components/ListEditor';
 import {
     clearActiveLists,
     fetchBoardLists,
@@ -14,7 +14,7 @@ import {
     putUpdateListItems,
     updateList
 } from "../store/actions/ListActions";
-import Card from "./Card";
+import Card from "../components/Card";
 import arrayMove from 'array-move';
 import {useParams} from "react-router-dom";
 import {clearActiveBoard, setActiveBoard} from "../store/actions/BoardActions";

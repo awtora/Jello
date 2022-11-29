@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Input} from "reactstrap";
-import EditButtons from "./EditButtons";
+import EditButtons from "../components/EditButtons";
 import {useDispatch, useSelector} from "react-redux";
 import {postDeleteBoard, postNewBoard, putUpdateBoardName} from "../store/actions/BoardActions";
 
