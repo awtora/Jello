@@ -1,6 +1,6 @@
 import '../styles/App.scss';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {UserMenu} from "./UserMenu";
 import {BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
@@ -18,12 +18,11 @@ export default function App() {
     const user = useSelector((state) => {
         return state.userStore.user
     })
-    const boards = useSelector((state) => state.boardStore.boards);
 
-    if(!boards.length && user) {
-        dispatch(getInvites(user.id))
-        dispatch(getUserBoards(user.id))
-    }
+    useEffect(() => {
+        dispatch(getInvites(user.id));
+        dispatch(getUserBoards(user.id));
+    },[])
 
     return (
         <Router>
