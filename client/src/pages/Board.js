@@ -63,15 +63,6 @@ const Board = (props) => {
         dispatch(fetchBoardLists(boardId));
         dispatch(setActiveBoard(boardId))
 
-        // const socket = socketIOclient(apiUrl)
-        // socket.connect()
-        // socket.on(`board ${boardId}`, () => {
-        //     fetchBoardLists(boardId)
-        // })
-        // socket.onAny((event, ...args) => {
-        //     console.log(event)
-        // })
-
         return () => {
             dispatch(clearActiveBoard());
             dispatch(clearActiveLists());

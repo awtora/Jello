@@ -27,6 +27,8 @@ export const PrivateRoute = ({children, ...rest}) => {
     );
 }
 
+// A wrapper for <Route> that redirects to the main boards page
+//if you are authenticated
 export const AuthRoute = ({children, ...rest}) => {
     let user = useSelector((state) => {
         return state.userStore.user
