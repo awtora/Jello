@@ -115,37 +115,32 @@ const Board = (props) => {
 
     const handleDragOver = ({active, over, draggingRect}) => {
         if (!over) return;
-        let activeCardId = active.id;
-        let overId = over.id;
         let activeContainer = findContainer(active.id);
-        let overContainer = findContainer(overId);
-        let activeItems = activeContainer.items;
-        let overItems = overContainer.items;
-        const overIndex = overItems.indexOf(overItems.find(item => item._id === overId));
-        const activeIndex = activeItems.indexOf(activeItems.find(item => item._id === activeCardId));
+        let overContainer = findContainer(over.id);
+        const overIndex = overContainer.items.indexOf(overContainer.items.find(item => item._id === over.id));
+        const activeIndex = activeContainer.items.indexOf(activeContainer.items.find(item => item._id === active.id));
         if (activeContainer !== overContainer) {
             setNewListId(overContainer._id);
-            let newIndex;
 
             const belowLastItemModifier = over &&
-                overIndex === overItems.length - 1 &&
+                overIndex === overContainer.items.length - 1 &&
                 draggingRect.offsetTop > over.rect.offsetTop + over.rect.height
                 ? 1
                 : 0;
 
-            newIndex =
-                overIndex >= 0 ? overIndex + belowLastItemModifier : overItems.length + 1;
+            const newIndex =
+                overIndex >= 0 ? overIndex + belowLastItemModifier : overContainer.items.length + 1;
 
             dispatch(updateList({
                 ...activeContainer,
-                items: activeContainer.items.filter(item => item._id !== activeCardId)
+                items: activeContainer.items.filter(item => item._id !== active.id)
             }));
             dispatch(updateList({
                 ...overContainer,
                 items: [...overContainer.items.slice(0, newIndex), activeCard, ...overContainer.items.slice(newIndex, overContainer.items.length)]
             }))
         } else {
-            if (active.id !== overId) {
+            if (active.id !== over.id) {
                 dispatch(updateList({
                     ...activeContainer,
                     items: arrayMove(activeContainer.items, activeIndex, overIndex)
