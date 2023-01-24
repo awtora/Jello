@@ -19,7 +19,6 @@ import arrayMove from 'array-move';
 import {useParams} from "react-router-dom";
 import {clearActiveBoard, setActiveBoard} from "../store/actions/BoardActions";
 import {BoardManager} from "./BoardManager";
-import socketIOclient from 'socket.io-client'
 import {apiUrl} from "../config";
 import axios from "axios";
 import authHeader from "../helpers/AuthHeader";
@@ -127,15 +126,15 @@ const Board = (props) => {
         if (activeContainer !== overContainer) {
             setNewListId(overContainer._id);
             let newIndex;
-            const isBelowLastItem =
-                over &&
-                overIndex === overItems.length - 1 &&
-                draggingRect.offsetTop > over.rect.offsetTop + over.rect.height;
 
-            const modifier = isBelowLastItem ? 1 : 0;
+            const belowLastItemModifier = over &&
+                overIndex === overItems.length - 1 &&
+                draggingRect.offsetTop > over.rect.offsetTop + over.rect.height
+                ? 1
+                : 0;
 
             newIndex =
-                overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
+                overIndex >= 0 ? overIndex + belowLastItemModifier : overItems.length + 1;
 
             dispatch(updateList({
                 ...activeContainer,
