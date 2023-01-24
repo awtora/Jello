@@ -15,8 +15,10 @@ export default (app) => {
     })
 
     app.post('/user/signIn', (req, res) => {
+        // console.log(req.body.data);
         let token = generateAccessToken(req.body.data.login);
         findUserByLogin(req.body.data).then(user => {
+            console.log(user);
             if (user) {
                 if (verifyPassword(req.body.data.password, user.password)) {
                     res.send({user: {id: user._id, login: user.login, permissions: user.permissions , accessToken: token}, userBoards: user.boards})

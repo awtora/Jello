@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from 'bcrypt'
+import {passwordEncrypt} from "../../routes/middleware/passwordEncrypt.js";
 const Schema = mongoose.Schema;
 
 const UserScheme = new Schema({
@@ -9,24 +9,16 @@ const UserScheme = new Schema({
     permissions: Object
 });
 
-UserScheme.pre('save, findByIdAndUpdate', function(next) {
+UserScheme.pre('save', function(next) {
     const user = this;
 
-    // only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
+    passwordEncrypt(next, user);
+});
 
-    // generate a salt
-    bcrypt.genSalt(10, (err, salt) => {
-        if (err) return next(err);
+UserScheme.pre('findByIdAndUpdate', function(next){
+    const user = this;
 
-        // hash the password using our new salt
-        bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) return next(err);
-            // override the cleartext password with the hashed one
-            user.password = hash;
-            next();
-        });
-    });
+    passwordEncrypt(next, user);
 });
 
 const User = mongoose.model('User', UserScheme);

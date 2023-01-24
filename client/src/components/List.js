@@ -17,15 +17,16 @@ const List = ({id, title, cards, canEdit}) => {
     const {setNodeRef} = useDroppable({
         id: id,
     });
-    const boardId = useSelector((state) => state.boardStore.activeBoard)
-    const [isAddingCard, toggleAddingCard] = useState(false);
+    const boardId = useSelector((state) => state.boardStore.activeBoard);
+    const [editFlags, setEditFlags] = useState({isAddingCard: false, isEditingCardId: false, isEditingList: false});
+    // const [isAddingCard, toggleAddingCard] = useState(false);
     const [isEditingCardId, setEditingCardId] = useState(false);
     const [isEditingList, setEditingList] = useState(false);
 
     const dispatch = useDispatch();
 
     const handleAddCardClick = () => {
-        toggleAddingCard(!isAddingCard);
+        setEditFlags({...editFlags, isAddingCard: !editFlags.isAddingCard})
     };
 
     const handleDeleteClick = () => {
@@ -75,7 +76,7 @@ const List = ({id, title, cards, canEdit}) => {
                             </DraggableItemContainer>
                         )
                     )}
-                    {isAddingCard ? (
+                    {editFlags.isAddingCard ? (
                         <CardEditor saveLabel='Save' handleCancel={handleAddCardClick} listId={id}/>
                     ) : (
                         (<Button className="list-cards__addCard" color="success" onClick={handleAddCardClick} disabled={canEdit}>

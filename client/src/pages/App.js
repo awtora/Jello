@@ -20,9 +20,11 @@ export default function App() {
     })
 
     useEffect(() => {
-        dispatch(getInvites(user.id));
-        dispatch(getUserBoards(user.id));
-    },[])
+        if (user?.id) {
+            dispatch(getInvites(user.id));
+            dispatch(getUserBoards(user.id));
+        }
+    },[user])
 
     return (
         <Router>
